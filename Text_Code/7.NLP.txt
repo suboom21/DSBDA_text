@@ -20,7 +20,7 @@ stop_words=stopwords.words('english')
 word=token
 c_token=[]
 
-for i in token:
+for word in token:
     if word not in stop_words:
         c_token.append(word)
 
