@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+
+data=pd.read_csv('Mall_Customers.csv')
+
+data.info()
+
+data.isnull().sum()
+
+data.rename(columns={'Genre':'Gender'},inplace=True)
+
+data
+
+data.rename(columns={'Annual Income (k$)':'Income'},inplace=True)
+
+data
+
+data['Age'].mean()
+
+data.mode(axis=1)
+
+data['Age'].std()
+
+data.groupby(['Gender'])['Age'].mean()
+
+data['Age'].var()
+
+data['Age'].min()

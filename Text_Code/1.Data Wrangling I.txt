@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+data=pd.read_csv('Pr1.csv')
+data
+data.info()
+data.isnull().sum()
+avg_marks=data['Marks'].mean()
+print(avg_marks)
+data['Marks'].replace(np.NaN,avg_marks,inplace=True)
+data.isnull().sum()
+to_replace=['M','F']
+value=[0,1]
+data['Gender'].replace(to_replace,value,inplace=True)
+data.info()

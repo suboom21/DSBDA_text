@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import  MinMaxScaler
+import seaborn as sns
+from scipy import stats
+data=pd.read_csv('Pr2.csv')
+data.info()
+data.describe()
+data.isnull().sum()
+data['Discussion'].replace(np.NaN,value=data['Discussion'].mean(),inplace=True)
+data.isnull().sum()
+sns.regplot(x=data['Sno'],y=data['AnnouncementsView'])
+sns.boxplot(y=data['Sno'],color='green')
+df1 = pd.DataFrame({ 'Income': [15000, 1800, 120000, 10000], 
+ 'Age': [25, 18, 42, 51], 
+ 'Department': ['HR','Legal','Marketing','Management']})
+df1_scaled = df1.copy() 
+col_names = ['Income', 'Age'] 
+features = df1_scaled[col_names]
+features
+from sklearn.preprocessing import MinMaxScaler
+scaler=MinMaxScaler()
+df1_scaled[col_names]=scaler.fit_transform(features.values)
+df1_scaled
+
+sns.regplot(x=df1_scaled['Income'],y=df1_scaled['Age'])

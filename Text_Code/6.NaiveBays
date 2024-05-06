@@ -1,0 +1,57 @@
+import pandas as pd
+import numpy as np
+
+
+data=pd.read_csv('Iris.csv')
+
+data.info()
+
+data.head()
+
+data['Species'].replace(to_replace=['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'],value=[0,1,2],inplace=True)
+
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+
+np.unique(data['Species'])
+
+X=data[['SepalLengthCm',	'SepalWidthCm',	'PetalLengthCm',	'PetalWidthCm']].values
+Y=data['Species'].values
+
+
+
+print(Y)
+
+
+model=GaussianNB()
+
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.25)
+
+model.fit(X_train,Y_train)
+
+mapper={'Iris-setosa':0, 'Iris-versicolor':1, 'Iris-virginica':2}
+
+predictions=model.predict(X_test)
+
+#predictions=[mapper[i] for i in predictions]
+
+from sklearn.metrics import confusion_matrix
+
+from sklearn.metrics import classification_report
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.regplot(x=X_test[:,1],y=predictions)
+
+
+from sklearn.metrics import confusion_matrix
+
+from sklearn.metrics import classification_report
+
+cm=confusion_matrix(Y_test,predictions)
+
+print(cm)
+
+print(classification_report(Y_test,predictions))
+

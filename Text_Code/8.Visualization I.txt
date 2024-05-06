@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+data=pd.read_csv('Titanic.csv')
+
+data.info()
+
+data.isnull().sum()
+
+data['Age'].replace(np.NaN,value=data['Age'].mean(),inplace=True)
+
+data['Cabin']=data['Cabin'].fillna(data['Cabin'].mode()[0])
+
+data['Embarked']=data['Embarked'].fillna(data['Embarked'].mode()[0])
+
+data.isnull().sum()
+
+sns.pairplot(data)
+
+sns.countplot(x='Survived',data=data)
+
+sns.boxplot(data['Age'])
+
+sns.catplot(x='Pclass',y='Age',data=data,kind='box')
+
+sns.displot(data['Age'],)
+sns.boxplot(x=data['Age'],y=data['Sex'],hue=data['Survived'])

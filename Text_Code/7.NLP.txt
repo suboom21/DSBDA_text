@@ -1,0 +1,46 @@
+from nltk import word_tokenize,sent_tokenize
+
+s1="Shubham is Stupid. He wont last long nor do Any sheet"
+s2="who cares whatever its just pointless running around"
+
+
+token=word_tokenize(s1)
+stoken=sent_tokenize(s2)
+print(token,stoken)
+
+from nltk import pos_tag
+
+tagged_token=pos_tag(token)
+
+print(tagged_token)
+
+from nltk.corpus import stopwords
+
+stop_words=stopwords.words('english')
+word=token
+c_token=[]
+
+for i in token:
+    if word not in stop_words:
+        c_token.append(word)
+
+print(c_token)
+
+from nltk.stem import PorterStemmer
+
+stemmer=PorterStemmer()
+word=word_tokenize(s2)
+
+stem_1=[stemmer.stem(word) for word in token]
+
+print (stem_1)
+
+from nltk.stem import WordNetLemmatizer
+
+stemmer=PorterStemmer()
+word=word_tokenize(s2)
+
+stem_2=[stemmer.stem(word) for word in token]
+
+print(stem_2)
+
